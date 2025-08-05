@@ -5,6 +5,7 @@ import (
 	"github.com/go-playground/validator/v10"
 	"net/http"
 	"regexp"
+	"slices"
 	"strings"
 	"time"
 
@@ -99,12 +100,7 @@ func isValidSKU(sku string) bool {
 // TODO: Implement currency validator
 func isValidCurrency(currency string) bool {
 	// TODO: Check if the currency is in the validCurrencies slice
-	for _, v := range validCurrencies {
-		if currency == v {
-			return true
-		}
-	}
-	return false
+	return slices.Contains(validCurrencies, currency)
 }
 
 // TODO: Implement category validator
@@ -131,12 +127,7 @@ func isValidSlug(slug string) bool {
 func isValidWarehouseCode(code string) bool {
 	// TODO: Check if warehouse code is in validWarehouses slice
 	// Format should be WH### (e.g., WH001, WH002)
-	for _, v := range validWarehouses {
-		if code == v {
-			return true
-		}
-	}
-	return false
+	return slices.Contains(validWarehouses, code)
 }
 
 // TODO: Implement comprehensive product validation
